@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currículo y Pedagogía Digital para el ASE — Infografía interactiva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1B1F;
+    --paper:#FFFFFF;
+    --paper-2:#FFF2DC;
+    --emerald:#0EA982;
+    --emerald-d:#0B6E4F;
+    --amber:#F2891F;
+    --indigo:#5B4FE0;
+    --brick:#E23F73;
+    --sun:#F5B933;
+    --line: rgba(27,27,31,.12);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Fraunces', serif;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--emerald-d);
+  }
+  /* ---------- NAV ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    padding:.55rem 1rem;
+  }
+  .topbar-inner{
+    max-width:980px; margin:0 auto;
+    display:flex; align-items:center; gap:.9rem;
+    flex-wrap:wrap;
+  }
+  .brandmark{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.68rem; letter-spacing:.08em;
+    color:var(--ink); opacity:.75;
+    white-space:nowrap;
+  }
+  .dots{display:flex; gap:.32rem; flex-wrap:wrap;}
+  .dot{
+    width:26px; height:26px; border-radius:50%;
+    border:1px solid var(--line);
+    background:transparent;
+    font-family:'IBM Plex Mono', monospace; font-size:.64rem;
+    color:var(--ink); cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:all .18s ease;
+  }
+  .dot:hover{border-color:var(--emerald);}
+  .dot.active{background:var(--emerald); color:#fff; border-color:var(--emerald);}
+  .navbtns{margin-left:auto; display:flex; gap:.4rem;}
+  .navbtns button{
+    font-family:'IBM Plex Mono', monospace; font-size:.68rem;
+    background:var(--indigo); color:#fff;
+    border:none; padding:.4rem .7rem; border-radius:6px; cursor:pointer;
+    letter-spacing:.05em;
+  }
+  .navbtns button:disabled{opacity:.3; cursor:default;}
+
+  /* ---------- PAGES ---------- */
+  .stage{max-width:980px; margin:0 auto; padding: 0 1.2rem;}
+  .page{display:none; padding:2.6rem 0 4rem;}
+  .page.active{display:block; animation:fade .45s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .page-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:.72rem;
+    color:var(--brick); letter-spacing:.1em; text-transform:uppercase;
+    margin-bottom:.5rem; display:block;
+  }
+  h1.title{font-size:2.1rem; line-height:1.15; margin:.1rem 0 .6rem; font-weight:700;}
+  h2.section-title{font-size:1.55rem; margin:0 0 1rem; font-weight:600;}
+  p{line-height:1.62; font-size:1rem; margin:0 0 1rem;}
+  .lede{font-size:1.12rem; color:var(--emerald-d); font-style:italic; font-family:'Fraunces',serif;}
+
+  /* ---------- HERO / PORTADA ---------- */
+  .hero{
+    min-height:88vh; display:flex; flex-direction:column; justify-content:center; padding:2rem 0;
+    background:
+      radial-gradient(circle at 92% -8%, rgba(91,79,224,.38), transparent 45%),
+      radial-gradient(circle at 104% 46%, rgba(242,137,31,.34), transparent 42%),
+      radial-gradient(circle at -8% 96%, rgba(226,63,115,.30), transparent 42%),
+      radial-gradient(circle at 6% -6%, rgba(245,185,51,.40), transparent 36%);
+  }
+  .weave-wrap{margin:1.4rem 0 2rem;}
+  .kicker-row{display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.4rem;}
+  .pill{
+    font-family:'IBM Plex Mono', monospace; font-size:.68rem;
+    border:1px solid var(--line); border-radius:999px;
+    padding:.3rem .7rem; letter-spacing:.03em;
+  }
+  .cover-meta{
+    margin-top:2rem; padding-top:1.2rem; border-top:1px solid var(--line);
+    display:grid; grid-template-columns:1fr 1fr; gap:.6rem 2rem;
+    font-family:'IBM Plex Mono', monospace; font-size:.78rem;
+  }
+  .cover-meta div span{display:block; opacity:.6; font-size:.68rem; margin-bottom:.15rem;}
+
+  /* ---------- CARDS / GRIDS ---------- */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; margin:1.4rem 0;}
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.4rem 0;}
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:0; overflow:hidden;
+    box-shadow:0 6px 16px rgba(27,27,31,.08);
+  }
+  .card h4{
+    margin:0; padding:.85rem 1.2rem; color:#fff;
+    font-family:'Fraunces',serif; font-size:1.05rem;
+  }
+  .card p{font-size:.92rem; margin:0; padding:1rem 1.2rem;}
+  .card.emerald h4{background:var(--emerald);}
+  .card.amber h4{background:var(--amber);}
+  .card.indigo h4{background:var(--indigo);}
+  .card.brick h4{background:var(--brick);}
+
+  .quote-block{
+    border-left:3px solid var(--emerald);
+    padding:.3rem 0 .3rem 1.1rem; margin:1.3rem 0;
+    font-family:'Fraunces',serif; font-style:italic; color:var(--emerald-d);
+    font-size:1.02rem;
+  }
+  .cite{font-family:'IBM Plex Mono', monospace; font-size:.72rem; color:var(--ink); opacity:.65; font-style:normal;}
+
+  /* accordion */
+  .accordion-item{border:1px solid var(--line); border-radius:8px; margin-bottom:.6rem; overflow:hidden; background:#fff;}
+  .accordion-btn{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    padding:.85rem 1rem; font-family:'Source Sans 3'; font-weight:600; font-size:.96rem;
+    display:flex; justify-content:space-between; align-items:center; color:var(--ink);
+  }
+  .accordion-btn .plus{font-family:'IBM Plex Mono',monospace; color:var(--emerald); font-size:1rem;}
+  .accordion-panel{max-height:0; overflow:hidden; transition:max-height .28s ease; padding:0 1rem;}
+  .accordion-panel p{padding-top:.2rem; font-size:.92rem;}
+  .accordion-item.open .accordion-panel{max-height:400px; padding-bottom:.9rem;}
+  .accordion-item.open .plus{transform:rotate(45deg); display:inline-block;}
+
+  /* toggle tabs (RULER etc) */
+  .subtabs{display:flex; gap:.4rem; flex-wrap:wrap; margin:1rem 0 .8rem;}
+  .subtab{
+    font-family:'IBM Plex Mono',monospace; font-size:.72rem;
+    border:1px solid var(--line); background:#fff; border-radius:6px;
+    padding:.4rem .65rem; cursor:pointer;
+  }
+  .subtab.active{background:var(--indigo); color:#fff; border-color:var(--indigo);}
+  .subpanel{display:none; background:#fff; border:1px solid var(--line); border-radius:8px; padding:1rem 1.1rem;}
+  .subpanel.active{display:block;}
+
+  /* levels diagram */
+  .levels{display:flex; align-items:center; justify-content:center; gap:2rem; margin:2rem 0; flex-wrap:wrap;}
+  .circle{
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    flex-direction:column; text-align:center; color:#fff; font-family:'Fraunces',serif;
+    cursor:pointer; transition:transform .2s ease;
+  }
+  .circle:hover{transform:scale(1.04);}
+  .circle.macro{width:230px; height:230px; background:var(--emerald-d);}
+  .circle.meso{width:165px; height:165px; background:var(--amber); margin-left:-70px;}
+  .circle.micro{width:105px; height:105px; background:var(--brick); margin-left:-45px;}
+  .circle span.lvl{font-size:.62rem; font-family:'IBM Plex Mono',monospace; opacity:.85; letter-spacing:.08em;}
+  .circle strong{font-size:1rem;}
+  .level-detail{background:#fff; border:1px solid var(--line); border-radius:8px; padding:1rem 1.2rem; min-height:70px;}
+
+  footer.pagefoot{
+    margin-top:2.4rem; padding-top:1rem; border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace; font-size:.7rem; opacity:.55;
+  }
+  ul.refs li{margin-bottom:.75rem; font-size:.92rem; line-height:1.5;}
+  .tag-row{display:flex; gap:.4rem; margin:.3rem 0 1rem; flex-wrap:wrap;}
+  .tag{font-family:'IBM Plex Mono',monospace; font-size:.62rem; background:var(--paper-2); padding:.2rem .5rem; border-radius:4px;}
+
+  @media (max-width:720px){
+    .grid2, .grid3{grid-template-columns:1fr;}
+    h1.title{font-size:1.5rem;}
+    .cover-meta{grid-template-columns:1fr;}
+    .levels{gap:0;}
+    .circle.meso{margin-left:0; margin-top:-40px;}
+    .circle.micro{margin-left:0; margin-top:-30px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <span class="brandmark">UNIDAD 3 · CURRÍCULO Y PRÁCTICA PEDAGÓGICA</span>
+    <div class="dots" id="dots"></div>
+    <div class="navbtns">
+      <button id="prevBtn">← ANT</button>
+      <button id="nextBtn">SIG →</button>
+    </div>
+  </div>
+</nav>
+
+<div class="stage" id="stage">
+
+  <!-- PAGE 0 — PORTADA -->
+  <section class="page active" data-page="0">
+    <div class="hero">
+      <div class="kicker-row">
+        <span class="pill" style="border-color:#5B4FE0; color:#5B4FE0; font-weight:600;">Especialización en Didáctica y TIC</span>
+        <span class="pill" style="border-color:#0EA982; color:#0B6E4F; font-weight:600;">Universidad de Cartagena</span>
+        <span class="pill" style="border-color:#E23F73; color:#E23F73; font-weight:600;">Unidad 3</span>
+      </div>
+      <span class="eyebrow">Infografía interactiva · Capítulo 3, UNESCO (2025)</span>
+      <h1 class="title" style="font-size:2.7rem; max-width:820px;">El currículo como red entrelazada: <span style="color:#5B4FE0;">pedagogía, ASE</span> y <span style="color:#E23F73;">tecnología digital</span></h1>
+      <p class="lede" style="max-width:640px;">Una lectura crítica de "Currículo y pedagogía, incluida la pedagogía digital" (UNESCO, 2025) en diálogo con la Unidad 3 del curso, sobre currículo y práctica pedagógica en la sociedad del conocimiento.</p>
+
+      <svg class="weave-wrap" width="100%" height="150" viewBox="0 0 900 150" preserveAspectRatio="xMidYMid meet">
+        <path d="M0,30 C150,120 250,-20 400,75 C550,170 650,10 900,90" stroke="#0EA982" stroke-width="6" fill="none" opacity="0.95" stroke-linecap="round"/>
+        <path d="M0,90 C150,10 250,150 400,45 C550,-30 650,110 900,30" stroke="#F2891F" stroke-width="6" fill="none" opacity="0.95" stroke-linecap="round"/>
+        <path d="M0,60 C150,60 250,60 400,110 C550,150 650,60 900,60" stroke="#5B4FE0" stroke-width="6" fill="none" opacity="0.95" stroke-linecap="round"/>
+      </svg>
+      <div class="tag-row">
+        <span class="tag" style="border-left:4px solid #0EA982; font-weight:600;">Currículo</span>
+        <span class="tag" style="border-left:4px solid #F2891F; font-weight:600;">Pedagogía / ASE</span>
+        <span class="tag" style="border-left:4px solid #5B4FE0; font-weight:600;">Pedagogía digital</span>
+      </div>
+
+      <div class="cover-meta" style="grid-template-columns:1fr;">
+        <div>
+          <span>Integrantes</span>
+          <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.35rem;">
+            <span style="background:#0EA982; color:#fff; padding:.4rem .85rem; border-radius:8px; font-family:'Source Sans 3'; font-weight:600; font-size:.85rem;">Dianneth Castrillón Benítez <span style="opacity:.85; font-family:'IBM Plex Mono'; font-size:.7rem;">· 8212610797</span></span>
+            <span style="background:#F2891F; color:#fff; padding:.4rem .85rem; border-radius:8px; font-family:'Source Sans 3'; font-weight:600; font-size:.85rem;">Joheiny Alejandra Montealegre Longas <span style="opacity:.85; font-family:'IBM Plex Mono'; font-size:.7rem;">· 8212610867</span></span>
+            <span style="background:#5B4FE0; color:#fff; padding:.4rem .85rem; border-radius:8px; font-family:'Source Sans 3'; font-weight:600; font-size:.85rem;">Luisa Fernanda Ruiz García <span style="opacity:.85; font-family:'IBM Plex Mono'; font-size:.7rem;">· 8212610912</span></span>
+            <span style="background:#E23F73; color:#fff; padding:.4rem .85rem; border-radius:8px; font-family:'Source Sans 3'; font-weight:600; font-size:.85rem;">María Valentina Urriago Cárdenas <span style="opacity:.85; font-family:'IBM Plex Mono'; font-size:.7rem;">· 8212610929</span></span>
+          </div>
+        </div>
+        <div><span>Programa</span>Especialización en Didáctica y TIC</div>
+        <div><span>Institución</span>Universidad de Cartagena</div>
+        <div><span>Docente</span>Wilson Smith Cano Gil</div>
+        <div><span>Fecha</span>Agosto de 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 1 — MARCO -->
+  <section class="page" data-page="1">
+    <span class="page-tag">01 · Marco conceptual</span>
+    <h2 class="section-title">¿Qué entendemos por currículo y pedagogía?</h2>
+    <p>El currículo puede describirse como una red entrelazada de procesos y normas —explícitos, implícitos o ausentes— que orienta qué, por qué, cómo y qué tan bien debe aprender el estudiantado (Eisner, 1992; UNESCO, 2013, como se citó en UNESCO, 2025). No es un fin en sí mismo, sino el canal a través del cual ocurre el aprendizaje: un proceso sociocultural entre docentes, textos, alumnado y entornos.</p>
+    <p>La pedagogía, en cambio, es el método mediante el cual esa red cobra vida en el aula. Se mueve en un continuo entre el enfoque <em>instructivista</em> (docente como transmisor) y el <em>constructivista</em> (docente como facilitador que ayuda a construir saberes de forma experiencial y participativa).</p>
+
+    <div class="quote-block">Los currículos y pedagogías de aprendizaje social y emocional, si se desarrollan dentro de un enfoque escolar integral, pueden fortalecer la confianza del profesorado y mejorar el clima escolar general que lo respalda.
+      <div class="cite">— UNESCO (2025, p. 71)</div>
+    </div>
+
+    <div class="grid2">
+      <div class="card emerald">
+        <h4>Currículo</h4>
+        <p>El nexo que vincula visiones sociales y aspiraciones con teorías del aprendizaje. Debe equilibrar estructura y flexibilidad para adaptarse a contextos, lenguas y culturas diversas, evitando sesgos ideológicos en ambos extremos.</p>
+      </div>
+      <div class="card amber">
+        <h4>Pedagogía</h4>
+        <p>El docente materializa el marco curricular en actividades de aprendizaje, apoyando al alumnado en la construcción de significado a partir de sus fortalezas y su bienestar integral en contextos sociales.</p>
+      </div>
+    </div>
+
+    <p>La Unidad 3 del curso amplía esta idea: en la sociedad del conocimiento el currículo se "rejuvenece" con una dinámica transformadora, dejando de ser solo transmisor de contenidos disciplinares para convertirse en catalizador de equidad, innovación y aprendizaje a lo largo de la vida (Marope, 2017, como se citó en material de Unidad 3, Universidad de Cartagena, s.f.).</p>
+  </section>
+
+  <!-- PAGE 2 — PREGUNTA 1 -->
+  <section class="page" data-page="2">
+    <span class="page-tag">02 · Pregunta orientadora 1</span>
+    <h2 class="section-title">¿Cómo una propuesta curricular contribuye a la equidad social y el bien común?</h2>
+    <p>UNESCO (2025) plantea que el ASE debe estar <strong>orientado a la equidad social y al bien común</strong> como característica subyacente de toda pedagogía: cultivar competencias sociales y emocionales para un propósito tanto personal como social, desarrollando virtudes, valores y la capacidad de tomar decisiones sabias para una sociedad pacífica y sostenible.</p>
+
+    <div class="grid3">
+      <div class="card emerald">
+        <h4>Tecnología colaborativa, no individualista</h4>
+        <p>Las tecnologías digitales excesivamente individualistas resultan menos útiles que aquellas que favorecen la colaboración y el aprendizaje social a largo plazo.</p>
+      </div>
+      <div class="card amber">
+        <h4>Relevancia cultural</h4>
+        <p>La pertinencia cultural exige alinear currículo y orientación pedagógica con las normas y valores de cada comunidad, reconociendo la diversidad lingüística y de experiencias de vida.</p>
+      </div>
+      <div class="card brick">
+        <h4>Inclusividad</h4>
+        <p>Los sistemas educativos deben adaptarse para incluir a estudiantes con discapacidades y necesidades educativas especiales, optimizando el diseño digital para que sea accesible, en especial para las niñas.</p>
+      </div>
+    </div>
+
+    <p>La Unidad 3 refuerza este enfoque al citar el objetivo prioritario de la educación pos-2015 de la UNESCO: "garantizar una educación inclusiva, equitativa, de calidad y promover oportunidades de aprendizaje permanente para todos" (Programa de las Naciones Unidas para el Desarrollo, como se citó en material de Unidad 3, Universidad de Cartagena, s.f.). Un currículo de calidad, entonces, no es solo un documento técnico: es una herramienta operativa para la equidad, la justicia, la cohesión y la paz.</p>
+  </section>
+
+  <!-- PAGE 3 — PREGUNTA 2 -->
+  <section class="page" data-page="3">
+    <span class="page-tag">03 · Pregunta orientadora 2</span>
+    <h2 class="section-title">¿Qué desafíos anticipan en la implementación de currículos integradores de ASE y pedagogías digitales?</h2>
+    <p>Integrar el ASE con la pedagogía digital exige resolver varias tensiones. A continuación, algunos de los desafíos más relevantes identificados en el capítulo:</p>
+
+    <div class="accordion-item">
+      <button class="accordion-btn">Uso excesivo y bienestar emocional <span class="plus">+</span></button>
+      <div class="accordion-panel"><p>Existe literatura creciente que advierte que el uso excesivo de herramientas y medios digitales —especialmente redes sociales— puede generar ansiedad y depresión entre la gente joven (Hoge et al., 2017; Peper y Harvey, 2018, como se citó en UNESCO, 2025). El reto es diseñar experiencias digitales ricas sin sacrificar interacciones sociales reales.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn">Sesgos, estereotipos y jerarquías ocultas <span class="plus">+</span></button>
+      <div class="accordion-panel"><p>Juegos, simulaciones y entornos inmersivos pueden reproducir estereotipos o jerarquías mediante narrativas o diseños de personajes acríticos. Se vuelve indispensable evaluar críticamente cómo se representan los grupos históricamente marginados en los juegos en línea.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn">Formación docente y "desaprendizaje" <span class="plus">+</span></button>
+      <div class="accordion-panel"><p>Adoptar pedagogías digitales para el ASE no es solo aprender herramientas nuevas: implica "desaprender" ciertas prácticas docentes tradicionales, lo que requiere formación continua y acompañamiento sostenido.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn">Alineación entre niveles macro, meso y micro <span class="plus">+</span></button>
+      <div class="accordion-panel"><p>Un desafío estructural es lograr coherencia entre la política educativa (macro), la planificación municipal o distrital (meso) y la implementación específica en cada escuela (micro), evitando que el ASE se trate como un añadido en vez de un componente central.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn">Adecuación a la edad y al desarrollo <span class="plus">+</span></button>
+      <div class="accordion-panel"><p>Las pedagogías digitales para ASE deben adaptarse a cada etapa educativa: en la infancia temprana se prioriza identificar y nombrar emociones, mientras que en la adolescencia se deben considerar los cambios éticos, morales y de plasticidad cerebral propios de esa edad.</p></div>
+    </div>
+  </section>
+
+  <!-- PAGE 4 — PREGUNTA 3 -->
+  <section class="page" data-page="4">
+    <span class="page-tag">04 · Pregunta orientadora 3</span>
+    <h2 class="section-title">¿Cómo se está repensando la educación con relación a las nuevas tendencias tecnológicas?</h2>
+    <p>La Unidad 3 describe un cambio global de paradigma: el currículo se redescubre como holístico, inclusivo, invertido y abierto, apoyado por la revolución de internet, los dispositivos móviles y la inteligencia artificial (Marope, 2017; Castells, 1999, como se citó en material de Unidad 3, Universidad de Cartagena, s.f.).</p>
+
+    <div class="subtabs" id="subtabs3">
+      <button class="subtab active" data-t="a">Aula invertida</button>
+      <button class="subtab" data-t="b">Herramientas digitales para ASE</button>
+      <button class="subtab" data-t="c">Pedagogías disruptivas</button>
+    </div>
+    <div class="subpanel active" data-p="a">
+      <p>En el <strong>aula invertida (flipped classroom)</strong>, el estudiante revisa los contenidos teóricos en casa y usa el tiempo de clase para resolver dudas y trabajar los conceptos de forma individual o colaborativa. El centro del aprendizaje deja de ser el docente que transmite y pasa a ser el estudiante investigador, que usa la web para consultar, producir, publicar y socializar conocimiento (Bergmann y Sams, como se citó en material de Unidad 3, Universidad de Cartagena, s.f.).</p>
+    </div>
+    <div class="subpanel" data-p="b">
+      <p>UNESCO (2025) documenta ejemplos concretos: el enfoque <strong>RULER</strong> (reconocer, comprender, etiquetar, expresar y regular emociones) aplicado con herramientas como el <em>Mood Meter</em>, y el juego <strong>Quandary</strong>, diseñado para enseñar ética y toma de perspectiva mediante dilemas sin soluciones concretas. Ambos ejemplos muestran cómo la pedagogía digital puede convertirse en un espacio seguro de práctica para habilidades socioemocionales.</p>
+    </div>
+    <div class="subpanel" data-p="c">
+      <p>Las pedagogías disruptivas o emergentes superan los límites físicos del aula, integran contextos formales e informales, favorecen múltiples modos de representación y estimulan el compromiso emocional del estudiante con el pensamiento crítico, para que no solo consuma información sino que la analice, contraste y transforme (Sánchez y Boronat, 2014, como se citó en material de Unidad 3, Universidad de Cartagena, s.f.).</p>
+    </div>
+
+    <p style="margin-top:1.2rem;">En conjunto, ambos textos coinciden en que la tecnología no reemplaza el trabajo meticuloso de docentes, escuelas y comunidades en la educación socioemocional: lo complementa como un elemento creativo y flexible dentro del programa curricular.</p>
+  </section>
+
+  <!-- PAGE 5 — PREGUNTA 4 -->
+  <section class="page" data-page="5">
+    <span class="page-tag">05 · Pregunta orientadora 4</span>
+    <h2 class="section-title">¿Qué identidades de aprendizaje se promueven y cómo se organizan en los modelos emergentes?</h2>
+    <p>UNESCO (2025) distingue componentes de la <strong>capacidad de acción del estudiante (agencia)</strong> que conforman distintas identidades de aprendizaje:</p>
+
+    <div class="grid2">
+      <div class="card indigo">
+        <h4>Identidad individualizada</h4>
+        <p>Orientación hacia el futuro, aprendizaje autorregulado, autorregulación metacognitiva, locus de control, perseverancia en el esfuerzo y en el interés, autoeficacia y deliberación personal.</p>
+      </div>
+      <div class="card amber">
+        <h4>Identidad socialmente moldeada</h4>
+        <p>Expresiones culturales, acciones cívicas, motivación altruista y preocupaciones compartidas: el estudiante como sujeto situado en una comunidad, no solo como individuo autónomo.</p>
+      </div>
+    </div>
+
+    <p>Estas identidades no dependen únicamente del individuo: experiencias de precariedad económica o exclusión social pueden influir en cómo la juventud comprende y ejerce su poder de acción (Spencer et al., 2020, como se citó en UNESCO, 2025).</p>
+
+    <p>En los modelos emergentes descritos en la Unidad 3, esta agencia se organiza alrededor del <strong>estudiante-investigador</strong>: protagonista que construye conocimientos, plantea problemas, analiza casos y desarrolla proyectos, en diálogo constante entre currículos "descendentes" (definidos por políticas) y "ascendentes" (nutridos de las necesidades y potencialidades del contexto local).</p>
+  </section>
+
+  <!-- PAGE 6 — PROPUESTA -->
+  <section class="page" data-page="6">
+    <span class="page-tag">06 · Propuesta innovadora</span>
+    <h2 class="section-title">Una propuesta que integra ASE y pedagogías digitales en tres niveles</h2>
+    <p>Retomando la Figura 3.1 de UNESCO (2025), el currículo de ASE se sostiene en tres niveles interconectados. Haga clic en cada círculo para ver cómo se traduce en una propuesta de aula invertida con enfoque socioemocional.</p>
+
+    <div class="levels" id="levels">
+      <div class="circle macro" data-lvl="macro"><span class="lvl">NIVEL</span><strong>Macro</strong></div>
+      <div class="circle meso" data-lvl="meso"><span class="lvl">NIVEL</span><strong>Meso</strong></div>
+      <div class="circle micro" data-lvl="micro"><span class="lvl">NIVEL</span><strong>Micro</strong></div>
+    </div>
+    <div class="level-detail" id="levelDetail">
+      <p style="margin:0;"><strong>Macro —</strong> Política educativa que respalda una visión nacional del ASE y de la alfabetización digital, definiendo qué debe aprender el estudiantado y cómo se forma inicialmente al profesorado (véase Recuadro 3.3, Pruebas Saber e ICFES, como ejemplo colombiano de política curricular).</p>
+    </div>
+
+    <p style="margin-top:1.6rem;">A partir de ahí, la propuesta integradora consiste en un <strong>"aula-laboratorio invertida con ASE"</strong>: el docente entrega en línea los fundamentos conceptuales (b-learning), y el tiempo presencial se dedica a prácticas restaurativas, aprendizaje cooperativo y herramientas de registro emocional tipo RULER, alineadas con los objetivos municipales/distritales (meso) y sostenidas por comunidades de práctica escolares (micro).</p>
+  </section>
+
+  <!-- PAGE 7 — REFLEXION -->
+  <section class="page" data-page="7">
+    <span class="page-tag">07 · Reflexión crítica</span>
+    <h2 class="section-title">Tensiones y aprendizajes de esta lectura</h2>
+    <p>Poner en diálogo el Capítulo 3 de UNESCO (2025) con la Unidad 3 del curso deja una tensión productiva: la pedagogía digital promete personalización, accesibilidad y herramientas emocionantes para la consciencia emocional, pero también arrastra riesgos de homogeneización cultural, uso excesivo y sesgos no examinados.</p>
+    <div class="grid2">
+      <div class="card emerald">
+        <h4>Lo que se gana</h4>
+        <p>Aprendizaje autónomo a distintos ritmos, en el idioma del estudiante, con múltiples modalidades; herramientas como Mood Meter o Quandary que hacen tangible la práctica socioemocional; el aula invertida que libera tiempo presencial para la relación humana.</p>
+      </div>
+      <div class="card brick">
+        <h4>Lo que exige vigilancia</h4>
+        <p>La revisión crítica constante de narrativas y sesgos en juegos y simulaciones; la brecha entre escuelas con y sin acceso tecnológico; y el riesgo de que la tecnología sustituya, en vez de complementar, el acompañamiento docente.</p>
+      </div>
+    </div>
+    <p>La conclusión de UNESCO (2025) resulta clara al respecto: currículo y pedagogía del ASE están íntimamente relacionados y deben respaldarse con la misma atención, incluyendo la dimensión digital, pero siempre contextualizados cultural y localmente —un principio que dialoga directamente con la invitación de la Unidad 3 a construir currículos "ascendentes", nutridos de la realidad de cada institución.</p>
+  </section>
+
+  <!-- PAGE 8 — PRODUCTO Y REFERENCIAS -->
+  <section class="page" data-page="8">
+    <span class="page-tag">08 · Producto y referencias</span>
+    <h2 class="section-title">Producto y referencias</h2>
+    <p>Esta infografía interactiva de varias páginas constituye el producto solicitado para la actividad "Descripción de la Actividad — Unidad 3", integrando el Capítulo 3 de la guía de políticas de UNESCO (2025) sobre currículo, pedagogía y pedagogía digital, con los planteamientos de la Unidad 3 del curso sobre currículo y práctica pedagógica en la sociedad del conocimiento.</p>
+
+    <h3 style="font-family:'Fraunces',serif; font-size:1.1rem; margin-top:1.6rem;">Referencias (Normas APA, 7.ª edición)</h3>
+    <ul class="refs">
+      <li>Universidad de Cartagena. (s.f.). <em>Unidad 3: Hacia la construcción de un currículo y una práctica pedagógica en la sociedad del conocimiento</em> [Material de curso]. Especialización en Didáctica y TIC.</li>
+      <li>UNESCO. (2025). Currículo y pedagogía, incluida la pedagogía digital. En <em>Integrar el aprendizaje social y emocional en los sistemas educativos: Guía de políticas</em> (pp. 70–90). UNESCO.</li>
+    </ul>
+
+    <footer class="pagefoot">Infografía interactiva · Unidad 3 · Especialización en Didáctica y TIC · Universidad de Cartagena</footer>
+  </section>
+
+</div>
+
+<script>
+  const pages = Array.from(document.querySelectorAll('.page'));
+  const dotsWrap = document.getElementById('dots');
+  let current = 0;
+
+  pages.forEach((p, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i===0 ? ' active':'');
+    d.textContent = i;
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function goTo(i){
+    pages[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = i;
+    pages[current].classList.add('active');
+    dots[current].classList.add('active');
+    document.getElementById('prevBtn').disabled = current===0;
+    document.getElementById('nextBtn').disabled = current===pages.length-1;
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  document.getElementById('prevBtn').addEventListener('click', ()=> current>0 && goTo(current-1));
+  document.getElementById('nextBtn').addEventListener('click', ()=> current<pages.length-1 && goTo(current+1));
+  document.getElementById('prevBtn').disabled = true;
+
+  // accordions
+  document.querySelectorAll('.accordion-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      btn.parentElement.classList.toggle('open');
+    });
+  });
+
+  // subtabs (page 4)
+  const subtabs = document.querySelectorAll('#subtabs3 .subtab');
+  subtabs.forEach(t=>{
+    t.addEventListener('click', ()=>{
+      subtabs.forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.subpanel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.querySelector('.subpanel[data-p="'+t.dataset.t+'"]').classList.add('active');
+    });
+  });
+
+  // levels diagram
+  const levelData = {
+    macro: "<strong>Macro —</strong> Política educativa que respalda una visión nacional del ASE y de la alfabetización digital, definiendo qué debe aprender el estudiantado y cómo se forma inicialmente al profesorado (véase Recuadro 3.3, Pruebas Saber e ICFES, como ejemplo colombiano de política curricular).",
+    meso: "<strong>Meso —</strong> Los municipios y distritos traducen las directrices macro en programas concretos: asignación de recursos, formación docente y comunidades de práctica que sostienen la implementación del ASE y de las herramientas digitales entre escuelas.",
+    micro: "<strong>Micro —</strong> Cada escuela adapta el currículo a su cultura particular: aplicación en el aula, asesores invitados, integración en asignaturas o materiales independientes como RULER o SEE Learning, según sus recursos y contexto."
+  };
+  document.querySelectorAll('.circle').forEach(c=>{
+    c.addEventListener('click', ()=>{
+      document.getElementById('levelDetail').innerHTML = '<p style="margin:0;">'+levelData[c.dataset.lvl]+'</p>';
+    });
+  });
+</script>
+</body>
+</html>
